@@ -61,11 +61,11 @@ setup(
 
     include_package_data=True,
 
-    install_requires=['ephem'],
+    install_requires=['ephem','jinja2'],
 
     entry_points={
         'console_scripts': [
-            'pytle=pytle.pytle:main',
+            'pytle=pytle.cli:main',
         ],
     },
 )
