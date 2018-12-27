@@ -44,4 +44,5 @@ optional arguments:
 
 History
 =======
+0.0.2 - Fixed a module name error
 0.0.1 - Initial import

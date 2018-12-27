@@ -8,9 +8,15 @@ RUN apk add --no-cache python3 gcc python3-dev musl-dev && \
     if [[ ! -e /usr/bin/python ]]; then ln -sf /usr/bin/python3 /usr/bin/python; fi && \
     rm -r /root/.cache
 
-ADD [".", "/tmp/codeenv"]
+#ADD [".", "/tmp/codeenv"]
+#RUN pip install  /tmp/codeenv/dist/*.tar.gz
+
+# RUN python3 -m pip install --index-url https://test.pypi.org/simple/ pytle
+
+RUN python3 -m pip install pytle
+ENTRYPOINT ["pytle"]
+
+# OLD
 # RUN pip install -r /tmp/codeenv/requirements.txt
-RUN pip install  /tmp/codeenv/dist/*.tar.gz
-ENTRYPOINT ["python", "/tmp/codeenv/pytle/cli.py"]
-# RUN pip install -r /tmp/codeenv/requirements.txt /tmp/codeenv
 # RUN python setup.py install
+# ENTRYPOINT ["python", "/tmp/codeenv/pytle/cli.py"]

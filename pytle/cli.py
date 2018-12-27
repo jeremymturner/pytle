@@ -2,7 +2,8 @@
 # -*- coding: utf-8 -*-
 #from pytle.pytle import main
 from pytle import pytle
-from argsc import argsc
+from pytle.argsc import argsc
+
 
 def main():
     import sys
