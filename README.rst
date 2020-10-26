@@ -31,11 +31,11 @@ Full Usage
 
 ::
 
-usage: pysatadif [-h] -s SATNAME [-o OUTPUT] [-v]
+usage: pysatadif [-h] -s SATNAME [SATNAME ... ] [-o OUTPUT] [-v]
 
 optional arguments:
   -h, --help            show this help message and exit
-  -s SATNAME, --satname SATNAME
+  -s SATNAME, --satname SATNAME [SATNAME ... ]
                         Satellites to track
   -o OUTPUT, --output OUTPUT
                         Output Format (text, json)
@@ -44,5 +44,6 @@ optional arguments:
 
 History
 =======
+0.0.3 - Removed Python 2 support. fixed json output to be actually json
 0.0.2 - Fixed a module name error
 0.0.1 - Initial import

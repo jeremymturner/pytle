@@ -15,7 +15,6 @@ except ImportError:
 name = "pytle"
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-# logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
 
 
 def get_path(filename):
@@ -37,18 +36,16 @@ class pytle:
 
             self.satlist = self.load_keps(keps)
 
-    def get_sat_info_json(self, name):
-        if name in self.satlist:
-            return self.satlist[name]
-        return None
+    def get_sat_info(self, name):
+        item = self.satlist.get(name, {})
+        if "ephem" in item:
+            item.pop("ephem")
+        return item
 
     def get_sat_info_text(self, name):
-        if name in self.satlist and "freq" in self.satlist[name]:
-            with open(get_path('templates/sat_info.j2')) as sat_info:
-                template = Template(sat_info.read())
-            return template.render(self.satlist[name])
-        return ""
-
+        with open(get_path('templates/sat_info.j2')) as sat_info:
+            template = Template(sat_info.read())
+        return template.render(self.get_sat_info(name))
 
     def download_keps(self, keps_url):
         logging.debug("Downloading keps from " + keps_url)
@@ -78,8 +75,6 @@ class pytle:
                     keps[i - 2],
                     keps[i - 1],
                     keps[i])
-                # satlist.append(sat)
-                # satlist.append({"name": name, "ephem": eph})
                 logging.debug("TLE " + name)
                 satlist[name] = {}
 
